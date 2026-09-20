@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Student_Manager.csproj" />
+  <Project Path="Student_Manager_ Business Logic Layer/Student_Manager_ Business Logic Layer.csproj" />
+  <Project Path="Student_Manager_Data_Access/Student_Manager_Data_Access.csproj" />
+</Solution>
