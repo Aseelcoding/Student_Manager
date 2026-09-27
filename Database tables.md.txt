@@ -1,0 +1,43 @@
+
+--done
+create Table Program 
+(
+ProgramID int primary key,
+Name varchar (100) not null,
+Level varchar (25) check (Level in ('Bachelor','Master','Doctoral'))
+)
+--done
+create table Contact 
+(
+ContactID int primary key,
+Phone varchar(20) unique not null check (LEN(Phone)>=9) ,
+Email varchar(255) unique not null check(LEN(Email)>=11)
+)
+
+create table Staff_Log
+(
+LogID int primary key,
+StaffID int not null constraint FK_StaffID_StaffLog foreign key references Staff(StaffID),
+StudentID int not null constraint FK_StudentID_StaffLog foreign key references Student(StudentID),
+Operation varchar(20) check (Operation in ('Add','Delete','Update')),
+Time DateTime not null
+)
+--done
+create table Staff
+(
+StaffID int primary key,
+Name varchar (255) ,
+UserName varchar (25) unique check (LEN(UserName) >=5),
+Password varchar(10) not null check (LEN(Password) >=3)
+)
+--done
+Create Table Student
+(
+StudentID int primary key,
+Name varchar (255) not null,
+ProgramID int not null constraint FK_ProgramID_StudentID foreign key references Program(ProgramID) ,
+DateOfBirth Date not null,
+ContactID int unique not null constraint FK_ContactID_StudentID foreign key references Contact(ContactID),
+Address varchar (500) not null,
+ImagePath varchar(500) not null
+)

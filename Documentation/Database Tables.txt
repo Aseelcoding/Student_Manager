@@ -1,0 +1,39 @@
+# Database Tables
+
+## Staff Table
+- ID
+- Name
+- User Name
+- Password
+
+---
+
+## Student Table
+- Student ID (NIM)
+- Name
+- Study Program ID
+- Level of Study
+- Year Entry
+- Year Graduate
+- Current Semester
+- Paid for Current Semester
+- Study Status
+- Contact Info ID
+- Address
+
+---
+
+## Study Program Table
+- ID
+- Name
+- Program Level
+- Period in Year
+- Period in Semester
+
+---
+
+## Student Contact Table
+- ID
+- Phone
+- Email
+- Legal Guardian Phone

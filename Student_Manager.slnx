@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="Student_Manager.csproj" />
-  <Project Path="Student_Manager_ Business Logic Layer/Student_Manager_ Business Logic Layer.csproj" />
-  <Project Path="Student_Manager_Data_Access/Student_Manager_Data_Access.csproj" />
+  <Project Path="Student_Manager.csproj" Id="312b9c88-8d7c-4450-9774-8f344246b9c8" />
+  <Project Path="Student_Manager_ Business Logic Layer/Student_Manager_ Business Logic Layer.csproj" Id="b1bcb267-0c42-4505-bf0a-0164a61a25de" />
+  <Project Path="Student_Manager_DataAsccess/Student_Manager_DataAsccess.csproj" Id="7dba2375-cdb9-4771-9a21-f5364747f4ef" />
 </Solution>
