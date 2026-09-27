@@ -328,6 +328,41 @@ namespace Student_Manager_DataAsccess
         }
 
         //Program's DataAccess Functions:
+        static public bool SaveNewProgram(string ProgramName,string Level) 
+        {
+            bool IsAdded = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"INSERT INTO [dbo].[Program]
+           ([Name]
+           ,[Level])
+            VALUES
+          ( @ProgramName,
+           @Level);";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ProgramName", ProgramName);
+            cmd.Parameters.AddWithValue("@Level", Level);
+
+            try
+            {
+                connection.Open();
+
+                int RowsAffected = cmd.ExecuteNonQuery();
+                if (RowsAffected > 0)
+                {
+                    IsAdded = true;
+                }
+
+            }
+
+            catch (Exception ex) { Console.WriteLine(ex.Message);  }
+            finally { connection.Close(); }
+
+            return IsAdded;
+
+        }
         static public DataTable GetProgramsBasedOnLevel(string Level)
         {
             

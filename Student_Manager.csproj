@@ -67,6 +67,13 @@
       <DependentUpon>frmMainScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Programs\clsCurrentProgram.cs" />
+    <Compile Include="Programs\frmAddNewProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Programs\frmAddNewProgram.Designer.cs">
+      <DependentUpon>frmAddNewProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="Programs\frmPrograms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main Screen\frmMainScreen.resx">
       <DependentUpon>frmMainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Programs\frmAddNewProgram.resx">
+      <DependentUpon>frmAddNewProgram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Programs\frmPrograms.resx">
       <DependentUpon>frmPrograms.cs</DependentUpon>

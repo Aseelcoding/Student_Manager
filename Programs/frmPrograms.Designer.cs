@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvPrograms = new System.Windows.Forms.DataGridView();
             this.ProgramID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProgramName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,8 +40,13 @@
             this.cbbSearch = new System.Windows.Forms.ComboBox();
             this.labSearchtxt = new System.Windows.Forms.Label();
             this.txtBarSearch = new System.Windows.Forms.TextBox();
+            this.cmPrograms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsbmUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbmDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddProgram = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrograms)).BeginInit();
             this.panel3.SuspendLayout();
+            this.cmPrograms.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPrograms
@@ -70,9 +76,9 @@
             // ProgramID
             // 
             this.ProgramID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ProgramID.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ProgramID.DefaultCellStyle = dataGridViewCellStyle1;
             this.ProgramID.HeaderText = "Program ID";
             this.ProgramID.MinimumWidth = 6;
             this.ProgramID.Name = "ProgramID";
@@ -127,7 +133,7 @@
             this.panel3.Controls.Add(this.cbbSearch);
             this.panel3.Controls.Add(this.labSearchtxt);
             this.panel3.Controls.Add(this.txtBarSearch);
-            this.panel3.Location = new System.Drawing.Point(138, 4);
+            this.panel3.Location = new System.Drawing.Point(270, 4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(332, 91);
             this.panel3.TabIndex = 5;
@@ -169,12 +175,49 @@
             this.txtBarSearch.WordWrap = false;
             this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
             // 
+            // cmPrograms
+            // 
+            this.cmPrograms.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmPrograms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbmUpdate,
+            this.tsbmDelete});
+            this.cmPrograms.Name = "cmStudent";
+            this.cmPrograms.Size = new System.Drawing.Size(117, 56);
+            // 
+            // tsbmUpdate
+            // 
+            this.tsbmUpdate.Image = global::Student_Manager.Properties.Resources.update_20;
+            this.tsbmUpdate.Name = "tsbmUpdate";
+            this.tsbmUpdate.Size = new System.Drawing.Size(116, 26);
+            this.tsbmUpdate.Text = "Update";
+            // 
+            // tsbmDelete
+            // 
+            this.tsbmDelete.Image = global::Student_Manager.Properties.Resources.delete_20;
+            this.tsbmDelete.Name = "tsbmDelete";
+            this.tsbmDelete.Size = new System.Drawing.Size(116, 26);
+            this.tsbmDelete.Text = "Delete";
+            // 
+            // btnAddProgram
+            // 
+            this.btnAddProgram.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnAddProgram.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddProgram.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddProgram.Location = new System.Drawing.Point(0, 58);
+            this.btnAddProgram.Name = "btnAddProgram";
+            this.btnAddProgram.Size = new System.Drawing.Size(264, 45);
+            this.btnAddProgram.TabIndex = 7;
+            this.btnAddProgram.Text = "Add Program";
+            this.btnAddProgram.UseVisualStyleBackColor = false;
+            this.btnAddProgram.Click += new System.EventHandler(this.btnAddProgram_Click);
+            // 
             // frmProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(604, 675);
+            this.Controls.Add(this.btnAddProgram);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.dgvPrograms);
@@ -188,6 +231,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrograms)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.cmPrograms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -204,5 +248,9 @@
         private System.Windows.Forms.ComboBox cbbSearch;
         private System.Windows.Forms.Label labSearchtxt;
         private System.Windows.Forms.TextBox txtBarSearch;
+        private System.Windows.Forms.ContextMenuStrip cmPrograms;
+        private System.Windows.Forms.ToolStripMenuItem tsbmDelete;
+        private System.Windows.Forms.ToolStripMenuItem tsbmUpdate;
+        private System.Windows.Forms.Button btnAddProgram;
     }
 }

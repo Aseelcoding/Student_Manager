@@ -117,5 +117,15 @@ namespace Student_Manager.Programs
 
 
         }
+
+        private void btnAddProgram_Click(object sender, EventArgs e)
+        {
+            //here we will create the form of adding new Program :
+            frmAddNewProgram frmAddNewProgram = new frmAddNewProgram();
+           
+            frmAddNewProgram.ShowDialog();
+            LoadProgramsInfo();
+
+        }
     }
 }

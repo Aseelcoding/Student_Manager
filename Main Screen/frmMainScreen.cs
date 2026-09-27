@@ -217,9 +217,9 @@ namespace Student_Manager.Main_Screen
             //cbSearch 
 
             FilterdtStudents(txtBarSearch.Text);
-
+            
         }
-
+        
         private void btnPrograms_Click(object sender, EventArgs e)
         {
             this.Hide();

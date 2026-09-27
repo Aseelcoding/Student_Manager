@@ -87,7 +87,7 @@
             this.panel1.Controls.Add(this.lapLine);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(285, 676);
             this.panel1.TabIndex = 0;
@@ -96,7 +96,7 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(204, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(75, 69);
             this.pictureBox1.TabIndex = 1;
@@ -112,7 +112,7 @@
             this.btnStaffLog.Image = ((System.Drawing.Image)(resources.GetObject("btnStaffLog.Image")));
             this.btnStaffLog.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStaffLog.Location = new System.Drawing.Point(0, 344);
-            this.btnStaffLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStaffLog.Margin = new System.Windows.Forms.Padding(2);
             this.btnStaffLog.Name = "btnStaffLog";
             this.btnStaffLog.Size = new System.Drawing.Size(285, 46);
             this.btnStaffLog.TabIndex = 7;
@@ -130,7 +130,7 @@
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSettings.Location = new System.Drawing.Point(2, 422);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSettings.Margin = new System.Windows.Forms.Padding(2);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(285, 50);
             this.btnSettings.TabIndex = 6;
@@ -160,7 +160,7 @@
             this.btnPrograms.Image = ((System.Drawing.Image)(resources.GetObject("btnPrograms.Image")));
             this.btnPrograms.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrograms.Location = new System.Drawing.Point(1, 181);
-            this.btnPrograms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrograms.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrograms.Name = "btnPrograms";
             this.btnPrograms.Size = new System.Drawing.Size(285, 46);
             this.btnPrograms.TabIndex = 4;
@@ -179,7 +179,7 @@
             this.btnStaff.Image = ((System.Drawing.Image)(resources.GetObject("btnStaff.Image")));
             this.btnStaff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStaff.Location = new System.Drawing.Point(0, 261);
-            this.btnStaff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStaff.Margin = new System.Windows.Forms.Padding(2);
             this.btnStaff.Name = "btnStaff";
             this.btnStaff.Size = new System.Drawing.Size(285, 46);
             this.btnStaff.TabIndex = 3;
@@ -197,7 +197,7 @@
             this.btnStudents.Image = ((System.Drawing.Image)(resources.GetObject("btnStudents.Image")));
             this.btnStudents.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnStudents.Location = new System.Drawing.Point(0, 108);
-            this.btnStudents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStudents.Margin = new System.Windows.Forms.Padding(2);
             this.btnStudents.Name = "btnStudents";
             this.btnStudents.Size = new System.Drawing.Size(285, 46);
             this.btnStudents.TabIndex = 2;
@@ -264,7 +264,7 @@
             this.dtgStudents.DefaultCellStyle = dataGridViewCellStyle4;
             this.dtgStudents.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dtgStudents.Location = new System.Drawing.Point(284, 127);
-            this.dtgStudents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgStudents.Margin = new System.Windows.Forms.Padding(2);
             this.dtgStudents.MultiSelect = false;
             this.dtgStudents.Name = "dtgStudents";
             this.dtgStudents.ReadOnly = true;
@@ -503,7 +503,7 @@
             this.Controls.Add(this.pnlInfo);
             this.Controls.Add(this.dtgStudents);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(1220, 714);
             this.MinimumSize = new System.Drawing.Size(1154, 714);
             this.Name = "frmMainScreen";

@@ -44,5 +44,9 @@ namespace Student_Manager__Business_Logic_Layer
         {
             return Student_Manager_DataAsccess.DataAccess.GetProgramsTableWithNumOfStudents();
         }
+        static public bool SaveNewProgram(string ProgramName,string Level)
+        {
+            return Student_Manager_DataAsccess.DataAccess.SaveNewProgram(ProgramName, Level);
+        }
     }
 }
