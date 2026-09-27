@@ -217,5 +217,10 @@ namespace Student_Manager.Update_Student
         
 
         }
+
+        private void frmUpdateStudent_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

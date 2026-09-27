@@ -61,6 +61,7 @@
             this.ProgramName,
             this.Level,
             this.NumOfStudents});
+            this.dgvPrograms.ContextMenuStrip = this.cmPrograms;
             this.dgvPrograms.Location = new System.Drawing.Point(0, 100);
             this.dgvPrograms.Margin = new System.Windows.Forms.Padding(2);
             this.dgvPrograms.MultiSelect = false;
@@ -68,6 +69,7 @@
             this.dgvPrograms.ReadOnly = true;
             this.dgvPrograms.RowHeadersWidth = 51;
             this.dgvPrograms.RowTemplate.Height = 24;
+            this.dgvPrograms.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPrograms.ShowCellErrors = false;
             this.dgvPrograms.ShowRowErrors = false;
             this.dgvPrograms.Size = new System.Drawing.Size(602, 522);
@@ -190,6 +192,7 @@
             this.tsbmUpdate.Name = "tsbmUpdate";
             this.tsbmUpdate.Size = new System.Drawing.Size(116, 26);
             this.tsbmUpdate.Text = "Update";
+            this.tsbmUpdate.Click += new System.EventHandler(this.tsbmUpdate_Click);
             // 
             // tsbmDelete
             // 

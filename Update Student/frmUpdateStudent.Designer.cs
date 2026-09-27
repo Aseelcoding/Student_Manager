@@ -45,7 +45,7 @@
             // 
             this.label1.Image = global::Student_Manager.Properties.Resources.update_20;
             this.label1.Location = new System.Drawing.Point(156, 9);
-            this.label1.Size = new System.Drawing.Size(492, 69);
+            this.label1.Size = new System.Drawing.Size(398, 55);
             this.label1.Text = "   Update Student";
             // 
             // btnAddStduent
@@ -56,9 +56,10 @@
             // frmUpdateStudent
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(872, 735);
+            this.ClientSize = new System.Drawing.Size(656, 604);
             this.Name = "frmUpdateStudent";
             this.Text = "Update Student";
+            this.Load += new System.EventHandler(this.frmUpdateStudent_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Student_Manager.Programs
 {
-    internal class clsCurrentProgram
+    public class clsCurrentProgram
     {
          public int ProgramID;
          public string ProgramName;

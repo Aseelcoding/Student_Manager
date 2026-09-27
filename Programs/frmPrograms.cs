@@ -1,4 +1,5 @@
 ﻿using Student_Manager.Main_Screen;
+using Student_Manager.Student_Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace Student_Manager.Programs
     public partial class frmProgram : Form
     {
         DataTable dtPrograms;
+       
         public frmProgram()
         {
             InitializeComponent();
@@ -126,6 +128,30 @@ namespace Student_Manager.Programs
             frmAddNewProgram.ShowDialog();
             LoadProgramsInfo();
 
+        }
+        private void GetSelectedRow(ref clsCurrentProgram ProgramToUpdate)
+        {
+            string PID = dgvPrograms.SelectedRows[0].Cells["ProgramID"].Value.ToString();
+            ProgramToUpdate.ProgramName = dgvPrograms.SelectedRows[0].Cells["ProgramName"].Value.ToString();
+            ProgramToUpdate.Level = dgvPrograms.SelectedRows[0].Cells["Level"].Value.ToString();
+
+            int.TryParse(PID, out ProgramToUpdate.ProgramID);
+
+        }
+        private void tsbmUpdate_Click(object sender, EventArgs e)
+        {
+            if(dgvPrograms.SelectedRows.Count < 0)
+                {
+                MessageBox.Show("Please select a full row to update", "Warning", MessageBoxButtons.OK);
+                return;
+
+            }
+            clsCurrentProgram ProgramToUpdate = new clsCurrentProgram();
+            GetSelectedRow(ref ProgramToUpdate);
+            //here we will show the program's form update:
+            frmUpdateProgram frmUpdateProgram = new frmUpdateProgram(ProgramToUpdate);
+            frmUpdateProgram.ShowDialog();
+            LoadProgramsInfo();
         }
     }
 }
