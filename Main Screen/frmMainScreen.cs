@@ -1,5 +1,6 @@
 ﻿using Student_Manager.Add_Student;
 using Student_Manager.Programs;
+using Student_Manager.Staff;
 using Student_Manager.Student_Data;
 using Student_Manager.Update_Student;
 using System;
@@ -263,6 +264,16 @@ namespace Student_Manager.Main_Screen
             }
 
             LoadStudentsInfo();
+        }
+
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            //here we will open the staff form :
+                
+            frmStaff frm= new frmStaff();
+            frm.Show();
+            this.Hide();
+
         }
     }
 }
