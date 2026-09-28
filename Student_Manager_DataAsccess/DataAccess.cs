@@ -326,7 +326,49 @@ namespace Student_Manager_DataAsccess
             return isUpdated;
 
         }
+        static public bool DeleteStudentByID(int StudentID) 
+        {
+            bool IsDeleted = false;
 
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"DELETE FROM [dbo].[Contact]
+                    WHERE ContactID IN (
+                    SELECT ContactID 
+                        FROM [dbo].[Student] 
+                        WHERE StudentID = @StudentID
+                                                );
+
+                
+                    DELETE FROM [dbo].[Student]
+                    WHERE StudentID = @StudentID;
+";
+
+            SqlCommand cmd= new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@StudentID", StudentID);
+
+            try
+            {
+                connection.Open();
+
+                int AffectedRows = cmd.ExecuteNonQuery();
+
+                if (AffectedRows > 0)
+                    IsDeleted = true;
+
+            }
+
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally 
+            {
+                connection.Close();
+            }
+
+            return IsDeleted;
+        }
         //Program's DataAccess Functions:
         static public bool SaveNewProgram(string ProgramName,string Level) 
         {
@@ -513,6 +555,44 @@ where Name=@ProgramName and Level=@Level;";
 
 
             return IsUpdated;
+        }
+        static public bool DeleteProgramByID(int ProgramID)
+        {
+            bool IsDeleted = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"DELETE FROM [dbo].[Program]
+      WHERE ProgramID=@ProgramID;";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ProgramID", ProgramID);
+
+            try
+            {
+                connection.Open();
+
+                int AffectedRows = cmd.ExecuteNonQuery();
+
+                if (AffectedRows > 0)
+                    IsDeleted = true;
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsDeleted;
+
+
+
+
         }
         //Contact's DataAccess Functions:
         static public int GetContactID(string Phone, string Email)

@@ -11,6 +11,7 @@ namespace Student_Manager.Programs
          public int ProgramID;
          public string ProgramName;
          public string Level;
+        public int NumOfStudents;
 
     }
 }

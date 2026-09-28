@@ -228,5 +228,41 @@ namespace Student_Manager.Main_Screen
             programs.Show();
             
         }
+        //this function will delete the selected Student
+        private bool DeleteStudent() 
+        {
+            clsCurrentStudent student = new clsCurrentStudent();
+            GetSelectedRow(ref student);
+
+            return Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStudentID(student.StudentID);
+
+
+        }
+        private void tsbmDelete_Click(object sender, EventArgs e)
+        {
+            if (dtgStudents.SelectedRows.Count <= 0)
+            {
+
+                MessageBox.Show("Please choose a valid row!", "Warning", MessageBoxButtons.OK);
+
+                return;
+
+            }
+
+            if(MessageBox.Show("Are you sure want to delete this student ?", "Warning", MessageBoxButtons.OKCancel)==DialogResult.OK)
+            {
+
+                if (DeleteStudent()) 
+                {
+                    MessageBox.Show("Delete the student done successfully", "success", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Faild to delete the student try again later", "Warning", MessageBoxButtons.OK);
+                }
+            }
+
+            LoadStudentsInfo();
+        }
     }
 }

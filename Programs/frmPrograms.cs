@@ -135,6 +135,9 @@ namespace Student_Manager.Programs
             ProgramToUpdate.ProgramName = dgvPrograms.SelectedRows[0].Cells["ProgramName"].Value.ToString();
             ProgramToUpdate.Level = dgvPrograms.SelectedRows[0].Cells["Level"].Value.ToString();
 
+            string NumOfStudents = dgvPrograms.SelectedRows[0].Cells["NumOfStudents"].ToString();
+            int.TryParse(NumOfStudents, out ProgramToUpdate.NumOfStudents);
+
             int.TryParse(PID, out ProgramToUpdate.ProgramID);
 
         }
@@ -148,9 +151,50 @@ namespace Student_Manager.Programs
             }
             clsCurrentProgram ProgramToUpdate = new clsCurrentProgram();
             GetSelectedRow(ref ProgramToUpdate);
+           
             //here we will show the program's form update:
             frmUpdateProgram frmUpdateProgram = new frmUpdateProgram(ProgramToUpdate);
             frmUpdateProgram.ShowDialog();
+            LoadProgramsInfo();
+        }
+
+        //this function will delete the program:
+        private bool DeleteProgram()
+        {
+            clsCurrentProgram clsCurrentProgram = new clsCurrentProgram();
+            GetSelectedRow(ref clsCurrentProgram);
+            if (clsCurrentProgram.NumOfStudents > 0) 
+            {
+                MessageBox.Show("You can not delete a program while there are students in it","Warning",MessageBoxButtons.OK);
+                return false ;
+            
+            }
+
+            return Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteProgramByID(clsCurrentProgram.ProgramID);
+
+        }
+        private void tsbmDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvPrograms.SelectedRows.Count < 0)
+            {
+                MessageBox.Show("Please select a full row to update", "Warning", MessageBoxButtons.OK);
+                return;
+
+            }
+
+            if (MessageBox.Show("Are you sure want to delete this Program ?", "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+
+                if (DeleteProgram())
+                {
+                    MessageBox.Show("Delete the program done successfully", "success", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Faild to delete the program try again later", "Warning", MessageBoxButtons.OK);
+                }
+            }
+
             LoadProgramsInfo();
         }
     }

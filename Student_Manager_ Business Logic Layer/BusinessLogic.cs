@@ -34,6 +34,10 @@ namespace Student_Manager__Business_Logic_Layer
         {
             return Student_Manager_DataAsccess.DataAccess.GetStudentByID(StudentID, ref Name, ref Level, ref ProgramName, ref DateOfBirth, ref Phone, ref Email, ref Address, ref ImagePath);
         }
+        static public bool DeleteStudentID(int StudentID)
+        {
+            return Student_Manager_DataAsccess.DataAccess.DeleteStudentByID(StudentID);
+        }
         //Program's DataAccess Functions:
         static public DataTable GetProgramsBasedOnLevel(string Level)
         {
@@ -51,6 +55,10 @@ namespace Student_Manager__Business_Logic_Layer
         static public bool UpdateProgramByID(int ProgramID,string ProgramName,string Leve)
         {
             return Student_Manager_DataAsccess.DataAccess.UpdateProgramByID(ProgramID, ProgramName, Leve);
+        }
+        static public bool DeleteProgramByID(int ProgramID)
+        {
+            return Student_Manager_DataAsccess.DataAccess.DeleteProgramByID(ProgramID);
         }
     }
 }

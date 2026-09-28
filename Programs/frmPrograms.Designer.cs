@@ -138,6 +138,7 @@
             this.tsbmDelete.Name = "tsbmDelete";
             this.tsbmDelete.Size = new System.Drawing.Size(214, 26);
             this.tsbmDelete.Text = "Delete";
+            this.tsbmDelete.Click += new System.EventHandler(this.tsbmDelete_Click);
             // 
             // btnBack
             // 
@@ -160,7 +161,7 @@
             this.panel3.Controls.Add(this.labSearchtxt);
             this.panel3.Controls.Add(this.txtBarSearch);
             this.panel3.Location = new System.Drawing.Point(360, 5);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(443, 112);
             this.panel3.TabIndex = 5;
@@ -177,7 +178,7 @@
             "Level",
             "Number of students"});
             this.cbbSearch.Location = new System.Drawing.Point(149, 31);
-            this.cbbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.cbbSearch.Name = "cbbSearch";
             this.cbbSearch.Size = new System.Drawing.Size(160, 28);
             this.cbbSearch.TabIndex = 6;
@@ -197,7 +198,7 @@
             // 
             this.txtBarSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarSearch.Location = new System.Drawing.Point(49, 66);
-            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarSearch.MaxLength = 500;
             this.txtBarSearch.Name = "txtBarSearch";
             this.txtBarSearch.Size = new System.Drawing.Size(341, 32);
@@ -211,7 +212,7 @@
             this.btnAddProgram.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddProgram.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddProgram.Location = new System.Drawing.Point(0, 71);
-            this.btnAddProgram.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddProgram.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddProgram.Name = "btnAddProgram";
             this.btnAddProgram.Size = new System.Drawing.Size(352, 55);
             this.btnAddProgram.TabIndex = 7;
