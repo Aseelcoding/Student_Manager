@@ -477,6 +477,43 @@ where Name=@ProgramName and Level=@Level;";
             return dtPrograms;
 
         }
+        static public bool UpdateProgramByID(int ProgramID,string ProgramName,string Level)
+        {
+            bool IsUpdated = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"UPDATE [dbo].[Program]
+   SET [Name] = @ProgramName
+      ,[Level] = @Level
+ WHERE ProgramID=@ProgramID;";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ProgramID", ProgramID);
+            cmd.Parameters.AddWithValue("@ProgramName", ProgramName);
+            cmd.Parameters.AddWithValue("@Level", Level);
+
+
+            try
+            {
+                connection.Open();
+
+                int AffectedRows = cmd.ExecuteNonQuery();
+                if (AffectedRows > 0)
+                {
+                    IsUpdated = true;
+                }
+            }
+            catch (Exception ex)
+            { Console.WriteLine(ex.Message); }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return IsUpdated;
+        }
         //Contact's DataAccess Functions:
         static public int GetContactID(string Phone, string Email)
         {

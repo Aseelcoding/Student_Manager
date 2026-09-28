@@ -28,8 +28,28 @@ namespace Student_Manager.Programs
 
 
         }
+
+        //this function will check if the program is valid or not :
+        private bool IsProgramValid()
+        {
+            bool IsValid = true;
+            if (cbLevel.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select the level of the program", "Warning", MessageBoxButtons.OK);
+                cbLevel.SelectedIndex = 0;
+                IsValid = false;
+
+            }
+            if (txtProgramName.Text.Length > 100 || txtProgramName.Text.Length < 6)
+            {
+                MessageBox.Show("Please, the name of the program must be less than or eq to 100 and more than 6 the", "Warning", MessageBoxButtons.OK);
+                txtProgramName.Clear();
+                IsValid = false;
+            }
+            return IsValid;
+        }
         //this function will save the Program info
-        private void SaveProgramIntObject() 
+        private void SaveProgramInObject() 
         {
            
             cUpdateProgram.Level = cbLevel.Text.ToString();
@@ -49,9 +69,40 @@ namespace Student_Manager.Programs
             this.Close();
         }
 
+        //this function will send the object to the database to update it :
+        private bool UpdateProgram() 
+        {
+            return Student_Manager__Business_Logic_Layer.BusinessLogic.UpdateProgramByID
+                (cUpdateProgram.ProgramID, cUpdateProgram.ProgramName, cUpdateProgram.Level);
+        }
         private void btnUpdateProgram_Click(object sender, EventArgs e)
         {
+            if (IsProgramValid())
+            {
+                SaveProgramInObject();
 
+                if (UpdateProgram())
+                {
+                    MessageBox.Show("Update Done successfully to the progrm with ID :" + cUpdateProgram.ProgramID, "success", MessageBoxButtons.OK);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Faild", "Warning", MessageBoxButtons.OK);
+
+                }
+            }
+            
+        }
+
+        private void txtProgramName_TextChanged(object sender, EventArgs e)
+        {
+            SaveProgramInObject();
+        }
+
+        private void cbLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveProgramInObject();
         }
     }
 }

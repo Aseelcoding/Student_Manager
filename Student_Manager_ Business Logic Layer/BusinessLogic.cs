@@ -48,5 +48,9 @@ namespace Student_Manager__Business_Logic_Layer
         {
             return Student_Manager_DataAsccess.DataAccess.SaveNewProgram(ProgramName, Level);
         }
+        static public bool UpdateProgramByID(int ProgramID,string ProgramName,string Leve)
+        {
+            return Student_Manager_DataAsccess.DataAccess.UpdateProgramByID(ProgramID, ProgramName, Leve);
+        }
     }
 }
