@@ -44,8 +44,110 @@ namespace Student_Manager_DataAsccess
 
             return IsFound;
         }
+        static public DataTable GetAllStaff()
+        {
+            DataTable dtStaff = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"select * from Staff;";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
 
 
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                dtStaff.Load(reader);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+            finally { connection.Close(); }
+
+            return dtStaff;
+
+        }
+        static public bool AddNewStaff(string StaffName,string Username,string Password) 
+        {
+            bool IsAdded = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"INSERT INTO [dbo].[Staff]
+           ([Name]
+           ,[UserName]
+           ,[Password])
+     VALUES
+           (@StaffName
+           ,@Username
+           ,@Password);";
+
+            SqlCommand cmd=new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@StaffName", StaffName);
+            cmd.Parameters.AddWithValue("@Username", Username);
+            cmd.Parameters.AddWithValue("@Password", Password);
+
+            try
+            {
+                connection.Open();
+
+                int AffectedRows = cmd.ExecuteNonQuery();
+
+                if (AffectedRows > 0)
+                    IsAdded = true;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return IsAdded;
+        }
+        static public bool DeleteStaffByID(int StaffID) 
+        {
+            bool IsDeleted = false;
+
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"Delete from Staff 
+                            where StaffID=@StaffID;";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@StaffID", StaffID);
+
+            try
+            {
+                connection.Open();
+
+                int AffectedRows = cmd.ExecuteNonQuery();
+                if (AffectedRows > 0) 
+                {
+                    IsDeleted = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsDeleted;
+        }
         //Student's DataAccess Functions:
         static public DataTable GetAllStudents() 
         {

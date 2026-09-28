@@ -269,10 +269,10 @@ namespace Student_Manager.Main_Screen
         private void btnStaff_Click(object sender, EventArgs e)
         {
             //here we will open the staff form :
-                
+            this.Hide();
             frmStaff frm= new frmStaff();
             frm.Show();
-            this.Hide();
+            
 
         }
     }

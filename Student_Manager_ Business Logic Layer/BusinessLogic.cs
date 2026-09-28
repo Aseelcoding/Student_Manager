@@ -15,6 +15,19 @@ namespace Student_Manager__Business_Logic_Layer
         {
             return Student_Manager_DataAsccess.DataAccess.IsStaffExist(ref StaffID,ref Name, UserName, Password);
         }
+        static public DataTable GetAllStaff() 
+        {
+            return Student_Manager_DataAsccess.DataAccess.GetAllStaff();
+
+        }
+        static public bool AddNewStaff(string StaffName, string Username, string Password)
+        {
+            return Student_Manager_DataAsccess.DataAccess.AddNewStaff(StaffName,Username,Password);
+        }
+        static public bool DeleteStaffByID(int StaffID)
+        {
+            return Student_Manager_DataAsccess.DataAccess.DeleteStaffByID(StaffID);
+        }
         //Student's Business Logic Functions:
         static public bool SaveNewStudent(ref int StudentID, string Name, string Email, string Phone
             , string ProgramName,string Level, DateTime DateOfBirth, string Address, string ImagePath) 

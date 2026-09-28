@@ -26,7 +26,7 @@ Time DateTime not null
 create table Staff
 (
 StaffID int primary key,
-Name varchar (255) ,
+Name varchar (255) //we should add a constraint check here to prevent the user to enter less than 4 letters,
 UserName varchar (25) unique check (LEN(UserName) >=5),
 Password varchar(10) not null check (LEN(Password) >=3)
 )
