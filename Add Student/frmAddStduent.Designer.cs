@@ -1,6 +1,6 @@
 ﻿namespace Student_Manager.Add_Student
 {
-    partial class frmAddStduent
+    partial class frmAddStudent
     {
         /// <summary>
         /// Required designer variable.
@@ -70,7 +70,7 @@
             this.btnAddStduent.TabIndex = 1;
             this.btnAddStduent.Text = "Add";
             this.btnAddStduent.UseVisualStyleBackColor = false;
-            this.btnAddStduent.Click += new System.EventHandler(this.btnAddStduent_Click);
+            this.btnAddStduent.Click += new System.EventHandler(this.btnAddStudent_Click);
             // 
             // btnCancel
             // 
@@ -153,10 +153,11 @@
             // 
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(283, 44);
-            this.txtEmail.MaxLength = 500;
+            this.txtEmail.MaxLength = 255;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(233, 30);
             this.txtEmail.TabIndex = 6;
+            this.txtEmail.WordWrap = false;
             // 
             // mtxPhone
             // 
@@ -257,7 +258,7 @@
             this.txtName.DetectUrls = false;
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(88, 107);
-            this.txtName.MaxLength = 500;
+            this.txtName.MaxLength = 255;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(364, 33);
             this.txtName.TabIndex = 3;
@@ -329,7 +330,7 @@
             this.label1.Text = "   Add Student";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // frmAddStduent
+            // frmAddStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -343,10 +344,10 @@
             this.Controls.Add(this.label1);
             this.MaximumSize = new System.Drawing.Size(890, 782);
             this.MinimumSize = new System.Drawing.Size(890, 782);
-            this.Name = "frmAddStduent";
+            this.Name = "frmAddStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Stduent";
-            this.Load += new System.EventHandler(this.frmAddStduent_Load);
+            this.Text = "Add Student";
+            this.Load += new System.EventHandler(this.frmAddStudent_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

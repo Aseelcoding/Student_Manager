@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cbSearch = new System.Windows.Forms.ComboBox();
             this.btnAddStaff = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.txtBarSearch);
             this.panel3.Location = new System.Drawing.Point(3, 2);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(657, 118);
             this.panel3.TabIndex = 5;
@@ -74,7 +74,7 @@
             "UserName",
             "Password"});
             this.cbSearch.Location = new System.Drawing.Point(352, 47);
-            this.cbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.cbSearch.Name = "cbSearch";
             this.cbSearch.Size = new System.Drawing.Size(160, 28);
             this.cbSearch.TabIndex = 6;
@@ -85,7 +85,7 @@
             this.btnAddStaff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddStaff.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddStaff.Location = new System.Drawing.Point(4, 20);
-            this.btnAddStaff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddStaff.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddStaff.Name = "btnAddStaff";
             this.btnAddStaff.Size = new System.Drawing.Size(264, 55);
             this.btnAddStaff.TabIndex = 6;
@@ -108,7 +108,7 @@
             // 
             this.txtBarSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarSearch.Location = new System.Drawing.Point(4, 82);
-            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarSearch.MaxLength = 500;
             this.txtBarSearch.Name = "txtBarSearch";
             this.txtBarSearch.Size = new System.Drawing.Size(648, 32);
@@ -128,7 +128,7 @@
             this.Password});
             this.dgvStaff.ContextMenuStrip = this.cmStaff;
             this.dgvStaff.Location = new System.Drawing.Point(3, 126);
-            this.dgvStaff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvStaff.Margin = new System.Windows.Forms.Padding(4);
             this.dgvStaff.MultiSelect = false;
             this.dgvStaff.Name = "dgvStaff";
             this.dgvStaff.ReadOnly = true;
@@ -141,9 +141,9 @@
             // 
             // StaffID
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffID.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StaffID.DefaultCellStyle = dataGridViewCellStyle1;
             this.StaffID.HeaderText = "Staff ID";
             this.StaffID.MinimumWidth = 6;
             this.StaffID.Name = "StaffID";
@@ -195,7 +195,7 @@
             // 
             this.tsbmDelete.Image = global::Student_Manager.Properties.Resources.delete_20;
             this.tsbmDelete.Name = "tsbmDelete";
-            this.tsbmDelete.Size = new System.Drawing.Size(214, 26);
+            this.tsbmDelete.Size = new System.Drawing.Size(133, 26);
             this.tsbmDelete.Text = "Delete";
             this.tsbmDelete.Click += new System.EventHandler(this.tsbmDelete_Click);
             // 

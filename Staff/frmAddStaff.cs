@@ -23,24 +23,27 @@ namespace Student_Manager.Staff
         {
             bool IsValid=true;
 
-            if(txtName.Text.Length<4 || txtName.Text.Length > 256) 
+            if(string.IsNullOrWhiteSpace(txtName.Text)) 
             {
-                MessageBox.Show("The name's length must be more than 4 and less than 256", "Warning", MessageBoxButtons.OK);
+                MessageBox.Show("Name must has value and does not start with space");
                 IsValid = false;
                 txtName.Clear();
+                txtName.Focus();
             }
-            if(txtUserName.Text.Length<5 || txtUserName.Text.Length > 25)
+            if (string.IsNullOrWhiteSpace(txtUserName.Text))
             {
-                MessageBox.Show("The Username's length must be more than 4 and less than 26", "Warning", MessageBoxButtons.OK);
+                MessageBox.Show("Username must has value and does not start with space");
                 IsValid = false;
                 txtUserName.Clear();
+                txtUserName.Focus();
             }
 
-            if (txtPassword.Text.Length < 3 || txtUserName.Text.Length > 10)
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                MessageBox.Show("The Password's length must be more than 2 and less than 11", "Warning", MessageBoxButtons.OK);
+                MessageBox.Show("Password must has value and does not start with space");
                 IsValid = false;
                 txtPassword.Clear();
+                txtPassword.Focus();
             }
 
             return IsValid;
@@ -54,30 +57,46 @@ namespace Student_Manager.Staff
         }
         //this function will send the new staff to the database :
 
-        private bool SaveStaff() 
+        private bool AddNewStaff() 
         {
+            bool IsAdded = false;
             clsStaff NewStaff = new clsStaff();
             SaveStaffIntoObject(ref NewStaff);
 
-            return Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewStaff
+            try
+            {
+                IsAdded =Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewStaff
                 (
                 NewStaff.Name, NewStaff.Username, NewStaff.Password);
+            }
 
+            catch
+            {
+                throw;
+            }
+            return IsAdded;
 
         }
         private void btnAddStduent_Click(object sender, EventArgs e)
         {
             if (IsStaffValid())
             {
-                if (SaveStaff())
+                try
                 {
-                    MessageBox.Show("Staff Added done successfully", "Success", MessageBoxButtons.OK);
+                    if (AddNewStaff())
+                    {
+                        MessageBox.Show("Staff Added done successfully", "Success", MessageBoxButtons.OK);
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Staff Added Faild", "Warning", MessageBoxButtons.OK);
+
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Staff Added Faild", "Warning", MessageBoxButtons.OK);
-                   
+                    MessageBox.Show(ex.Message);
                 }
             }
 
@@ -88,6 +107,6 @@ namespace Student_Manager.Staff
             this.Close();
         }
 
-       
+        
     }
 }

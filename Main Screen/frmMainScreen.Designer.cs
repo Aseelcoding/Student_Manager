@@ -384,7 +384,7 @@
             this.pnlInfo.Controls.Add(this.txtStaffName);
             this.pnlInfo.Controls.Add(this.txtGreet);
             this.pnlInfo.Location = new System.Drawing.Point(1292, 1);
-            this.pnlInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlInfo.Margin = new System.Windows.Forms.Padding(4);
             this.pnlInfo.Name = "pnlInfo";
             this.pnlInfo.Size = new System.Drawing.Size(247, 149);
             this.pnlInfo.TabIndex = 2;
@@ -437,7 +437,7 @@
             this.btnAddStduent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddStduent.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddStduent.Location = new System.Drawing.Point(387, 95);
-            this.btnAddStduent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddStduent.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddStduent.Name = "btnAddStduent";
             this.btnAddStduent.Size = new System.Drawing.Size(233, 55);
             this.btnAddStduent.TabIndex = 3;
@@ -451,7 +451,7 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.txtBarSearch);
             this.panel3.Location = new System.Drawing.Point(628, 37);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(657, 118);
             this.panel3.TabIndex = 4;
@@ -470,7 +470,7 @@
             "Contact ID",
             "Date Of Birth"});
             this.cbSearch.Location = new System.Drawing.Point(265, 48);
-            this.cbSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSearch.Margin = new System.Windows.Forms.Padding(4);
             this.cbSearch.Name = "cbSearch";
             this.cbSearch.Size = new System.Drawing.Size(160, 28);
             this.cbSearch.TabIndex = 6;
@@ -490,7 +490,7 @@
             // 
             this.txtBarSearch.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBarSearch.Location = new System.Drawing.Point(4, 82);
-            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBarSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtBarSearch.MaxLength = 500;
             this.txtBarSearch.Name = "txtBarSearch";
             this.txtBarSearch.Size = new System.Drawing.Size(648, 32);

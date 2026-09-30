@@ -34,7 +34,7 @@ namespace Student_Manager.Programs
                 IsValid = false;
                 
             }
-            if (txtProgramName.Text.Length > 100 || txtProgramName.Text.Length < 6)
+            if (txtProgramName.Text.Length > 100 || txtProgramName.Text.Length < 3)
             {
                 MessageBox.Show("Please, the name of the program must be less than or eq to 100 and more than 6 the", "Warning", MessageBoxButtons.OK);
                 txtProgramName.Clear();
@@ -55,28 +55,39 @@ namespace Student_Manager.Programs
 
         }
         //this function will send it to the databse :
-        private bool SaveProgram(  clsCurrentProgram NewProgram) 
+        private void AddNewProgram(clsCurrentProgram NewProgram) 
         {
-            return Student_Manager__Business_Logic_Layer.BusinessLogic.SaveNewProgram(NewProgram.ProgramName, NewProgram.Level);
+         
+            try
+            {
+              Student_Manager__Business_Logic_Layer.BusinessLogic.SaveNewProgram(NewProgram.ProgramName, NewProgram.Level);
+            }
+            catch 
+            {
+                throw;
+            }
+          
         }
        
         private void btnAddProgram_Click(object sender, EventArgs e)
         {
+         
             clsCurrentProgram program= new clsCurrentProgram();
             if (IsProgramValid())
             {
                 program = SaveProgramInfo();
 
-                if (SaveProgram(program))
+                try 
                 {
+                    AddNewProgram(program);
                     MessageBox.Show("Add New Program Done Successfully", "Success", MessageBoxButtons.OK);
-
                 }
-                else
+
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Faild to add new Progam. You Have to add Diff program and level", "Warning", MessageBoxButtons.OK);
-
-                }
+                    MessageBox.Show(ex.Message);
+                } 
+               
             }
 
 
@@ -84,10 +95,7 @@ namespace Student_Manager.Programs
 
         }
 
-        private void frmAddNewProgram_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
     
 }

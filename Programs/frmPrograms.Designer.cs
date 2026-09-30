@@ -122,13 +122,13 @@
             this.tsbmUpdate,
             this.tsbmDelete});
             this.cmPrograms.Name = "cmStudent";
-            this.cmPrograms.Size = new System.Drawing.Size(215, 84);
+            this.cmPrograms.Size = new System.Drawing.Size(132, 56);
             // 
             // tsbmUpdate
             // 
             this.tsbmUpdate.Image = global::Student_Manager.Properties.Resources.update_20;
             this.tsbmUpdate.Name = "tsbmUpdate";
-            this.tsbmUpdate.Size = new System.Drawing.Size(214, 26);
+            this.tsbmUpdate.Size = new System.Drawing.Size(131, 26);
             this.tsbmUpdate.Text = "Update";
             this.tsbmUpdate.Click += new System.EventHandler(this.tsbmUpdate_Click);
             // 
@@ -136,7 +136,7 @@
             // 
             this.tsbmDelete.Image = global::Student_Manager.Properties.Resources.delete_20;
             this.tsbmDelete.Name = "tsbmDelete";
-            this.tsbmDelete.Size = new System.Drawing.Size(214, 26);
+            this.tsbmDelete.Size = new System.Drawing.Size(131, 26);
             this.tsbmDelete.Text = "Delete";
             this.tsbmDelete.Click += new System.EventHandler(this.tsbmDelete_Click);
             // 

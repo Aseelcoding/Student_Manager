@@ -43,7 +43,7 @@ namespace Student_Manager.Main_Screen
         }
         private void btnAddStduent_Click(object sender, EventArgs e)
         {
-            frmAddStduent frmAddStduent = new frmAddStduent();
+            frmAddStudent frmAddStduent = new frmAddStudent();
             frmAddStduent.ShowDialog();
             LoadStudentsInfo();
         }
@@ -232,12 +232,20 @@ namespace Student_Manager.Main_Screen
         //this function will delete the selected Student
         private bool DeleteStudent() 
         {
+            bool IsDeleted=false;
             clsCurrentStudent student = new clsCurrentStudent();
             GetSelectedRow(ref student);
 
-            return Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStudentID(student.StudentID);
+            try
+            {
+                IsDeleted = Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStudentID(student.StudentID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-
+            return IsDeleted;
         }
         private void tsbmDelete_Click(object sender, EventArgs e)
         {

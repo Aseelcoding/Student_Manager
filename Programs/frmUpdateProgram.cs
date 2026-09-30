@@ -40,7 +40,7 @@ namespace Student_Manager.Programs
                 IsValid = false;
 
             }
-            if (txtProgramName.Text.Length > 100 || txtProgramName.Text.Length < 6)
+            if (txtProgramName.Text.Length > 100 || txtProgramName.Text.Length < 3)
             {
                 MessageBox.Show("Please, the name of the program must be less than or eq to 100 and more than 6 the", "Warning", MessageBoxButtons.OK);
                 txtProgramName.Clear();
@@ -72,24 +72,38 @@ namespace Student_Manager.Programs
         //this function will send the object to the database to update it :
         private bool UpdateProgram() 
         {
-            return Student_Manager__Business_Logic_Layer.BusinessLogic.UpdateProgramByID
+            bool IsUpdated = false;
+            try
+            {
+                IsUpdated = Student_Manager__Business_Logic_Layer.BusinessLogic.UpdateProgramByID
                 (cUpdateProgram.ProgramID, cUpdateProgram.ProgramName, cUpdateProgram.Level);
+                }
+            catch 
+            {
+                throw;
+            }
+
+            return IsUpdated;
         }
         private void btnUpdateProgram_Click(object sender, EventArgs e)
         {
+            bool IsUpdated = false;
             if (IsProgramValid())
             {
                 SaveProgramInObject();
 
-                if (UpdateProgram())
+                try
                 {
-                    MessageBox.Show("Update Done successfully to the progrm with ID :" + cUpdateProgram.ProgramID, "success", MessageBoxButtons.OK);
+                    IsUpdated= UpdateProgram();
+                    if (IsUpdated)
+                    {
+                        MessageBox.Show("Update Done successfully to the progrm with ID :" + cUpdateProgram.ProgramID, "success", MessageBoxButtons.OK);
+                    }
                     this.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Faild", "Warning", MessageBoxButtons.OK);
-
+                    MessageBox.Show(ex.Message);
                 }
             }
             

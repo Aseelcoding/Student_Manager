@@ -24,7 +24,12 @@ namespace Student_Manager.Staff
         private void LoadAllStaff() 
         {
             dgvStaff.Rows.Clear();
-             dtStaff = Student_Manager__Business_Logic_Layer.BusinessLogic.GetAllStaff();
+            try
+            {
+                dtStaff = Student_Manager__Business_Logic_Layer.BusinessLogic.GetAllStaff();
+            }
+
+            catch (Exception ex)  { MessageBox.Show(ex.Message); }
 
             if (dtStaff != null)
             {
@@ -41,6 +46,8 @@ namespace Student_Manager.Staff
                         );
                 }
             }
+
+
         }
         private void frmStaff_Load(object sender, EventArgs e)
         {
@@ -80,8 +87,14 @@ namespace Student_Manager.Staff
         //this function will delete a staff by ID:
         private bool DeleteStaff(int StaffID)  
         {
-            return Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStaffByID(StaffID);
+            bool IsDeleted = false;
 
+            try
+            {
+                IsDeleted=Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStaffByID(StaffID);
+            }
+            catch { throw; }
+           return IsDeleted;
         }
         //this function will check if the user is trying to delete with login user or deleteing the last user:
         private bool CheckUser() 
@@ -104,21 +117,25 @@ namespace Student_Manager.Staff
         
         private void tsbmDelete_Click(object sender, EventArgs e)
         {
-           
+
+            bool IsDeleted=false;
             clsStaff StaffToDelete = new clsStaff();
             GetSelectedRow(ref StaffToDelete);
 
             if (CheckUser())
             {
-                if (DeleteStaff(StaffToDelete.StaffID))
+                try
                 {
+                    IsDeleted=DeleteStaff(StaffToDelete.StaffID);
                     MessageBox.Show("Staff  with the ID :" + StaffToDelete.StaffID + " Deleted successfully", "Success", MessageBoxButtons.OK);
 
                 }
-                else
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Staff with the ID :" + StaffToDelete.StaffID + " Faild to delete", "Faild", MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message);
+
                 }
+                
             }
             
 

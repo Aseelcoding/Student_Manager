@@ -24,7 +24,14 @@ namespace Student_Manager.Programs
         }
         private void LoadProgramsInfo() 
         {
-             dtPrograms = Student_Manager__Business_Logic_Layer.BusinessLogic.GetProgramsTableWithNumOfStudents();
+            try { dtPrograms = Student_Manager__Business_Logic_Layer.BusinessLogic.GetProgramsTableWithNumOfStudents();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+             
 
             DataView dtvPrograms = dtPrograms.DefaultView;
 
@@ -135,7 +142,7 @@ namespace Student_Manager.Programs
             ProgramToUpdate.ProgramName = dgvPrograms.SelectedRows[0].Cells["ProgramName"].Value.ToString();
             ProgramToUpdate.Level = dgvPrograms.SelectedRows[0].Cells["Level"].Value.ToString();
 
-            string NumOfStudents = dgvPrograms.SelectedRows[0].Cells["NumOfStudents"].ToString();
+            string NumOfStudents = dgvPrograms.SelectedRows[0].Cells["NumOfStudents"].Value.ToString();
             int.TryParse(NumOfStudents, out ProgramToUpdate.NumOfStudents);
 
             int.TryParse(PID, out ProgramToUpdate.ProgramID);
@@ -143,7 +150,7 @@ namespace Student_Manager.Programs
         }
         private void tsbmUpdate_Click(object sender, EventArgs e)
         {
-            if(dgvPrograms.SelectedRows.Count < 0)
+            if(dgvPrograms.SelectedRows.Count <= 0)
                 {
                 MessageBox.Show("Please select a full row to update", "Warning", MessageBoxButtons.OK);
                 return;
@@ -161,6 +168,7 @@ namespace Student_Manager.Programs
         //this function will delete the program:
         private bool DeleteProgram()
         {
+            bool IsDeleted=false;
             clsCurrentProgram clsCurrentProgram = new clsCurrentProgram();
             GetSelectedRow(ref clsCurrentProgram);
             if (clsCurrentProgram.NumOfStudents > 0) 
@@ -170,12 +178,15 @@ namespace Student_Manager.Programs
             
             }
 
-            return Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteProgramByID(clsCurrentProgram.ProgramID);
+            try { IsDeleted=Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteProgramByID(clsCurrentProgram.ProgramID); }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
 
+            return IsDeleted;
         }
         private void tsbmDelete_Click(object sender, EventArgs e)
         {
-            if (dgvPrograms.SelectedRows.Count < 0)
+            bool IsDeleted = false;
+            if (dgvPrograms.SelectedRows.Count <= 0)
             {
                 MessageBox.Show("Please select a full row to update", "Warning", MessageBoxButtons.OK);
                 return;
@@ -185,14 +196,13 @@ namespace Student_Manager.Programs
             if (MessageBox.Show("Are you sure want to delete this Program ?", "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
 
-                if (DeleteProgram())
+                try { IsDeleted=DeleteProgram(); }
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Delete the program done successfully", "success", MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message);
                 }
-                else
-                {
-                    MessageBox.Show("Faild to delete the program try again later", "Warning", MessageBoxButtons.OK);
-                }
+                
+               
             }
 
             LoadProgramsInfo();

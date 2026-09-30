@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Student_Manager.Add_Student
 {
-    public partial class frmAddStduent : Form
+    public partial class frmAddStudent : Form
     {
-        public frmAddStduent()
+        public frmAddStudent()
         {
             InitializeComponent();
 
@@ -38,86 +38,73 @@ namespace Student_Manager.Add_Student
         {
             this.Close();
         }
-        //this function will check if the stduent is valid:
-        protected  bool IsStudentInfoValid() 
+        //this function will check if the student is valid:
+        protected bool IsStudentInfoValid() 
         {
-            if (txtName.Text.Length <=0 || txtName.Text.Length > 255) 
-            {
-                MessageBox.Show("The name must be more then 0 and less then 256", "Warning", MessageBoxButtons.OK);
-                txtName.Clear();
 
+
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                MessageBox.Show("You must enter a correct name");
+                txtName.Focus();
                 return false;
             }
 
-            if (txtEmail.Text.Length<11 || txtEmail.Text.Length > 256)
+            if (string.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("The email must be more then 10 and less then 256", "Warning", MessageBoxButtons.OK);
-                txtEmail.Clear();
+                MessageBox.Show("You must enter an Email");
+                txtEmail.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtEmail.Text.ToString()))
+            {
+                  MessageBox.Show("You can not enter White Spaces in an email");
+                txtEmail.Focus();
+                return false;
 
+            }
+
+            if (string.IsNullOrEmpty(mtxPhone.Text))
+            {
+                MessageBox.Show("You must enter an Phone");
+                mtxPhone.Focus();
+                return false;
+
+            }
+            if (string.IsNullOrWhiteSpace(mtxPhone.Text.ToString()))
+            {
+                MessageBox.Show("You can not enter White Spaces in a phone number");
+                mtxPhone.Focus();
+                return false;
+
+            }
+           
+            if (cbLevel.SelectedIndex < 0)
+            {
+                MessageBox.Show("You must choose a level of program");
+                cbLevel.SelectedIndex = 0;
                 return false;
             }
 
-            if (mtxPhone.Text.Length < 11 || mtxPhone.Text.Length > 256)
+            if (cbProgram.SelectedIndex < 0)
             {
-                MessageBox.Show("The phone number must be more then 9 and less then 15", "Warning", MessageBoxButtons.OK);
-                mtxPhone.Clear();
-
+                MessageBox.Show("You must choose a program");
+                cbProgram.SelectedIndex = 0;
                 return false;
             }
-
-            if (txtAddress.Text.Length >256)
+            
+             if (pbPersonalPhoto.Image == null || SelectedPath==string.Empty)
             {
-                MessageBox.Show("The Address must be more then 256", "Warning", MessageBoxButtons.OK);
-                txtAddress.Clear();
+                MessageBox.Show("You must load a photo for the student");
 
+                pbPersonalPhoto.Focus();
                 return false;
             }
-
-            if (SelectedPath == null)
-            {
-                MessageBox.Show("You muse choose a photo for the student", "Warning", MessageBoxButtons.OK);
-
-                return false;
-            }
-
-          
-
-
-
             return true;
         }
-        protected string SaveImageToAppFolder(string sourceFilePath)
-        {
-            if (string.IsNullOrEmpty(sourceFilePath) || !File.Exists(sourceFilePath))
-                return string.Empty;
-
-            // 1. تحديد مجلد مستندات المستخدم (MyDocuments) وإنشاء مجلد خاص بالتطبيق بداخله
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string appImagesFolder = Path.Combine(documentsPath, "StudentManager_Images");
-
-            // إذا لم يكن المجلد موجوداً، قم بإنشائه تلقائياً
-            if (!Directory.Exists(appImagesFolder))
-            {
-                Directory.CreateDirectory(appImagesFolder);
-            }
-
-            // 2. استخراج صيغة الملف (مثل .jpg أو .png)
-            string fileExtension = Path.GetExtension(sourceFilePath);
-
-            // 3. إنشاء اسم فريد تماماً للصورة لتجنب تكرار الأسماء
-            string uniqueImageName = Guid.NewGuid().ToString() + fileExtension;
-
-            // 4. المسار النهائي الذي ستخزن فيه الصورة على جهاز المستخدم
-            string destinationFilePath = Path.Combine(appImagesFolder, uniqueImageName);
-
-            // 5. نسخ الصورة فعلياً للمجلد الدائم
-            File.Copy(sourceFilePath, destinationFilePath, true);
-
-            // إرجاع المسار الجديد الدائم (وهذا ما يتم تخزينه في قاعدة البيانات وفي الكلاس)
-            return destinationFilePath;
-        }
+       
         //here we will save student info into an abject :
-        private void StduentInfoIntObject(ref clsCurrentStudent Student)
+        private void StudentInfoIntoObject(ref clsCurrentStudent Student)
         {
             Student.DateOfBirth = txtDate.Value;
             Student.StudentName= txtName.Text;
@@ -130,54 +117,52 @@ namespace Student_Manager.Add_Student
            int.TryParse(cbProgram.SelectedValue.ToString(), out Student.ProgramID);
 
 
-            Student.ImagePath = SaveImageToAppFolder(SelectedPath);
+            Student.ImagePath = Student_Manager__Business_Logic_Layer.BusinessLogic.SaveImageToAppFolder(SelectedPath);
+
 
         }
 
         //this function will take the Student object and send it to the database :
-        private bool SaveNewStduent()
+        private bool AddNewStudent()
         {
             clsCurrentStudent NewStduent = new clsCurrentStudent();
-            StduentInfoIntObject(ref NewStduent);
+            StudentInfoIntoObject(ref NewStduent);
 
 
-           return  Student_Manager__Business_Logic_Layer.BusinessLogic.SaveNewStudent(ref NewStduent.StudentID,
+           return  Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewStudent(ref NewStduent.StudentID,
                 NewStduent.StudentName, NewStduent.Email, NewStduent.Phone,
                 NewStduent.ProgramName,NewStduent.Level, NewStduent.DateOfBirth, NewStduent.Address, NewStduent.ImagePath);
 
 
         }
 
-        protected virtual void btnAddStduent_Click(object sender, EventArgs e)
+        protected virtual void btnAddStudent_Click(object sender, EventArgs e)
         {
             if (IsStudentInfoValid()) 
             {
                 //the student now is valid so we will save his info in an object and we will send it to the second layer:
-
-                if (SaveNewStduent())
+                try
+                {
+                    if (AddNewStudent())
                     {
-                    MessageBox.Show("Student Add Successfully", "Add", MessageBoxButtons.OK);
+                        MessageBox.Show("Student Add Successfully", "Add", MessageBoxButtons.OK);
 
                     }
-                else
-                {
-                    MessageBox.Show("Student Add Faild", "Add", MessageBoxButtons.OK);
                 }
-            
-
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            else
-            {
-                MessageBox.Show("Student Add Faild", "Add", MessageBoxButtons.OK);
-                return;
-            }
-
+    
         }
 
         //this function will fill the combobox of programs based on the level
         protected void FillProgramsAndLevels() 
         {
-           
+
+            if (cbLevel.SelectedIndex < 0)
+                return;
 
             string Level = cbLevel.SelectedItem.ToString();
             DataView dataView = new DataView();
@@ -193,7 +178,7 @@ namespace Student_Manager.Add_Student
                 cbProgram.SelectedIndex = 0;
             }
         }
-        private void frmAddStduent_Load(object sender, EventArgs e)
+        private void frmAddStudent_Load(object sender, EventArgs e)
         {
 
 

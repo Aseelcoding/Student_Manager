@@ -70,7 +70,7 @@
             this.panel1.Controls.Add(this.lapStaffID);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(16, 103);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(629, 308);
             this.panel1.TabIndex = 2;
@@ -200,12 +200,13 @@
             this.Controls.Add(this.btnAddStduent);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(677, 518);
             this.MinimumSize = new System.Drawing.Size(677, 518);
             this.Name = "frmAddStaff";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAddStaff";
+     
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

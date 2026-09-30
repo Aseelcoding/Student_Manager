@@ -51,7 +51,7 @@
             // btnAddStduent
             // 
             this.btnAddStduent.Text = "Update";
-            this.btnAddStduent.Click += new System.EventHandler(this.btnAddStduent_Click);
+            this.btnAddStduent.Click += new System.EventHandler(this.btnAddStudent_Click);
             // 
             // frmUpdateStudent
             // 
@@ -59,7 +59,6 @@
             this.ClientSize = new System.Drawing.Size(656, 604);
             this.Name = "frmUpdateStudent";
             this.Text = "Update Student";
-            this.Load += new System.EventHandler(this.frmUpdateStudent_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

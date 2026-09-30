@@ -39,7 +39,10 @@ namespace Student_Manager_DataAsccess
                 }
             } 
             catch(Exception ex)
-            { Console.WriteLine(ex.Message); }
+            {
+
+                throw new Exception("Failed to check if the staff exist.", ex);
+            }
             finally { connection.Close(); }
 
             return IsFound;
@@ -64,7 +67,8 @@ namespace Student_Manager_DataAsccess
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to get all staff.", ex);
+
 
             }
             finally { connection.Close(); }
@@ -104,7 +108,7 @@ namespace Student_Manager_DataAsccess
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to add staff", ex);
             }
             finally
             {
@@ -139,7 +143,8 @@ namespace Student_Manager_DataAsccess
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to delete staff.", ex);
+
             }
             finally
             {
@@ -182,7 +187,8 @@ namespace Student_Manager_DataAsccess
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to get students.", ex);
+
             }
             finally 
             {
@@ -191,102 +197,106 @@ namespace Student_Manager_DataAsccess
             }
             return dtStudents;
         }
-        static public int  CreateContact(string Phone,string Email) 
-        {
-            int ContactID = -1;
-            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
-            string query = @"INSERT INTO [dbo].[Contact]
-           ([Phone]
-           ,[Email])
-     VALUES
-          (@Phone,@Email)
-          SELECT SCOPE_IDENTITY()
-          ;";
-
-            SqlCommand cmd=new SqlCommand(query, connection);
-
-            cmd.Parameters.AddWithValue("@Phone", Phone);
-            cmd.Parameters.AddWithValue("@Email", Email);
-
-
-            try
-            {
-                connection.Open();
-
-                object Result = cmd.ExecuteScalar();
-
-                int.TryParse(Result.ToString(), out ContactID);
-
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-
-            }
-            return ContactID;
-
-        }
-        static public bool SaveNewStudent(ref int StudentID,string Name, string Email,string Phone 
+       
+        static public bool AddNewStudent(ref int StudentID,string Name, string Email,string Phone 
             ,string ProgramName,string Level,DateTime DateOfBirth ,string Address,string ImagePath)
         {
             bool IsAdded = false;
-            int ContactID= CreateContact(Phone,Email);
-            int ProgramID = GetProgramID(ProgramName, Level);
 
-            if (ContactID == -1)
-                return IsAdded;
-
-            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
-            string query = @"INSERT INTO [dbo].[Student]
-           ([Name]
-           ,[ProgramID]
-           ,[DateOfBirth]
-           ,[ContactID]
-           ,[Address]
-           ,[ImagePath])
-     VALUES
-           (@Name, 
-           @ProgramID,
-           @DateOfBirth,
-           @ContactID,
-          @Address, 
-           @ImagePath );";
-
-            SqlCommand cmd=new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@Name", Name);
-            cmd.Parameters.AddWithValue("@ProgramID", ProgramID);
-            cmd.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            cmd.Parameters.AddWithValue("@ContactID", ContactID);
-            cmd.Parameters.AddWithValue ("@Address", Address);
-            cmd.Parameters.AddWithValue("@ImagePath", ImagePath);
+            SqlConnection connection =
+                new SqlConnection(clsDataAccessSeetings.connectionString);
 
             try
             {
                 connection.Open();
 
-                int AffectedRows = cmd.ExecuteNonQuery();
+             
+                SqlTransaction transaction = connection.BeginTransaction();
 
-                
-                if (AffectedRows > 0)
+                try
                 {
+                    int ProgramID = GetProgramID(ProgramName, Level);
+
+                    if (ProgramID == -1)
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+
+                   
+                    string contactQuery = @"
+                INSERT INTO [dbo].[Contact]
+                    ([Phone], [Email])
+                VALUES
+                    (@Phone, @Email);
+
+                SELECT SCOPE_IDENTITY();";
+
+                    int ContactID;
+
+                    using (SqlCommand cmdContact =
+                        new SqlCommand(contactQuery, connection, transaction))
+                    {
+                        cmdContact.Parameters.AddWithValue("@Phone", Phone);
+                        cmdContact.Parameters.AddWithValue("@Email", Email);
+
+                        ContactID = Convert.ToInt32(
+                            cmdContact.ExecuteScalar());
+                    }
+
+                    string studentQuery = @"
+                INSERT INTO [dbo].[Student]
+                    ([Name],
+                     [ProgramID],
+                     [DateOfBirth],
+                     [ContactID],
+                     [Address],
+                     [ImagePath])
+                VALUES
+                    (@Name,
+                     @ProgramID,
+                     @DateOfBirth,
+                     @ContactID,
+                     @Address,
+                     @ImagePath);
+
+                SELECT SCOPE_IDENTITY();";
+
+                    using (SqlCommand cmdStudent =
+                        new SqlCommand(studentQuery, connection, transaction))
+                    {
+                        cmdStudent.Parameters.AddWithValue("@Name", Name);
+                        cmdStudent.Parameters.AddWithValue("@ProgramID", ProgramID);
+                        cmdStudent.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+                        cmdStudent.Parameters.AddWithValue("@ContactID", ContactID);
+                        cmdStudent.Parameters.AddWithValue("@Address", Address);
+                        cmdStudent.Parameters.AddWithValue("@ImagePath", ImagePath);
+
+                        StudentID = Convert.ToInt32(
+                            cmdStudent.ExecuteScalar());
+                    }
+
+                    transaction.Commit();
+
                     IsAdded = true;
                 }
-            }
+                catch
+                {
+                  
+                    transaction.Rollback();
 
+                    throw;
+                }
+            }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to add new Student.",ex);
             }
             finally
             {
                 connection.Close();
-
             }
+
             return IsAdded;
 
         }
@@ -345,8 +355,7 @@ namespace Student_Manager_DataAsccess
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
-                        isFound = false;
+                        throw new Exception("Failed to get student by id.", ex);
                     }
                     finally { connection.Close(); }
                 }
@@ -361,12 +370,12 @@ namespace Student_Manager_DataAsccess
 
             bool isUpdated = false;
 
-            // 1. استعلام تحديث جدول الـ Contact (الهاتف والإيميل)
+       
             string updateContactQuery = @"UPDATE Contact 
                                   SET Phone = @Phone, Email = @Email 
                                   WHERE ContactID = @ContactID";
             
-            // 2. استعلام تحديث جدول الـ Student (باقي بيانات الطالب والـ IDs الجاهزة)
+         
             string updateStudentQuery = @"UPDATE Student 
                                   SET Name = @Name, 
                                       ProgramID = @ProgramID, 
@@ -416,8 +425,7 @@ namespace Student_Manager_DataAsccess
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
-                    isUpdated = false;
+                    throw new Exception("Failed to update student.", ex);
                 }
                 finally
                 {
@@ -462,7 +470,7 @@ namespace Student_Manager_DataAsccess
 
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to delete student by id.", ex);
             }
             finally 
             {
@@ -472,7 +480,7 @@ namespace Student_Manager_DataAsccess
             return IsDeleted;
         }
         //Program's DataAccess Functions:
-        static public bool SaveNewProgram(string ProgramName,string Level) 
+        static public bool AddNewProgram(string ProgramName,string Level) 
         {
             bool IsAdded = false;
 
@@ -501,7 +509,7 @@ namespace Student_Manager_DataAsccess
 
             }
 
-            catch (Exception ex) { Console.WriteLine(ex.Message);  }
+            catch (Exception ex) { throw new Exception("Failed to add new program.", ex);  }
             finally { connection.Close(); }
 
             return IsAdded;
@@ -532,7 +540,8 @@ namespace Student_Manager_DataAsccess
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to get program based on level,", ex);
+
             }
             finally
             {
@@ -569,7 +578,8 @@ where Name=@ProgramName and Level=@Level;";
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to get program id.", ex);
+
             }
             finally
             {
@@ -611,7 +621,7 @@ where Name=@ProgramName and Level=@Level;";
             }
             catch (Exception ex) 
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to get programs with number of students.", ex);
             }
             finally
             {
@@ -649,7 +659,7 @@ where Name=@ProgramName and Level=@Level;";
                 }
             }
             catch (Exception ex)
-            { Console.WriteLine(ex.Message); }
+            { throw new Exception("Failed to update program by id.", ex); }
             finally
             {
                 connection.Close();
@@ -683,7 +693,7 @@ where Name=@ProgramName and Level=@Level;";
 
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new Exception("Failed to delete program by id.", ex);
             }
             finally
             {
@@ -725,7 +735,7 @@ where Name=@ProgramName and Level=@Level;";
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
+                        throw new Exception("Failed to get contact id.", ex);
                     }
                     finally { connection.Close(); };
                 }
