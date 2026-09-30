@@ -63,17 +63,12 @@ namespace Student_Manager.Staff
             clsStaff NewStaff = new clsStaff();
             SaveStaffIntoObject(ref NewStaff);
 
-            try
-            {
-                IsAdded =Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewStaff
+IsAdded =Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewStaff
                 (
                 NewStaff.Name, NewStaff.Username, NewStaff.Password);
-            }
+            
 
-            catch
-            {
-                throw;
-            }
+            
             return IsAdded;
 
         }
@@ -88,15 +83,10 @@ namespace Student_Manager.Staff
                         MessageBox.Show("Staff Added done successfully", "Success", MessageBoxButtons.OK);
 
                     }
-                    else
-                    {
-                        MessageBox.Show("Staff Added Faild", "Warning", MessageBoxButtons.OK);
-
-                    }
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Could not add new staff.\n\nDetails:" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
 

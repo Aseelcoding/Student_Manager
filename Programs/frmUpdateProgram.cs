@@ -73,15 +73,10 @@ namespace Student_Manager.Programs
         private bool UpdateProgram() 
         {
             bool IsUpdated = false;
-            try
-            {
+            
                 IsUpdated = Student_Manager__Business_Logic_Layer.BusinessLogic.UpdateProgramByID
                 (cUpdateProgram.ProgramID, cUpdateProgram.ProgramName, cUpdateProgram.Level);
-                }
-            catch 
-            {
-                throw;
-            }
+           
 
             return IsUpdated;
         }
@@ -103,7 +98,7 @@ namespace Student_Manager.Programs
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Could not update the program.\n\nDetails:"+ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
             

@@ -28,7 +28,7 @@ namespace Student_Manager.Programs
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Could not retrieve Programs data.\n\nDetails:" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return;
             }
              
@@ -178,8 +178,8 @@ namespace Student_Manager.Programs
             
             }
 
-            try { IsDeleted=Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteProgramByID(clsCurrentProgram.ProgramID); }
-            catch(Exception ex) { MessageBox.Show(ex.Message); }
+            IsDeleted=Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteProgramByID(clsCurrentProgram.ProgramID); 
+            
 
             return IsDeleted;
         }
@@ -199,7 +199,7 @@ namespace Student_Manager.Programs
                 try { IsDeleted=DeleteProgram(); }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Could not delete this student.\n\nDetails:" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 
                

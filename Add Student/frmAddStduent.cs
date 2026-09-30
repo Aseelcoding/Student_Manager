@@ -126,10 +126,11 @@ namespace Student_Manager.Add_Student
         private bool AddNewStudent()
         {
             clsCurrentStudent NewStduent = new clsCurrentStudent();
-            StudentInfoIntoObject(ref NewStduent);
 
+            StudentInfoIntoObject(ref NewStduent); 
+           
 
-           return  Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewStudent(ref NewStduent.StudentID,
+           return Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewStudent(ref NewStduent.StudentID,
                 NewStduent.StudentName, NewStduent.Email, NewStduent.Phone,
                 NewStduent.ProgramName,NewStduent.Level, NewStduent.DateOfBirth, NewStduent.Address, NewStduent.ImagePath);
 
@@ -151,14 +152,14 @@ namespace Student_Manager.Add_Student
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Could not add new student. \n\nDetails:"+ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
     
         }
 
         //this function will fill the combobox of programs based on the level
-        protected void FillProgramsAndLevels() 
+        protected void FillProgramsAndLevels()
         {
 
             if (cbLevel.SelectedIndex < 0)
@@ -166,18 +167,30 @@ namespace Student_Manager.Add_Student
 
             string Level = cbLevel.SelectedItem.ToString();
             DataView dataView = new DataView();
-            DataTable dataTable= Student_Manager__Business_Logic_Layer.BusinessLogic.GetProgramsBasedOnLevel(Level);
+
+            DataTable dataTable = new DataTable();
+            try
+            {
+                dataTable = Student_Manager__Business_Logic_Layer.BusinessLogic.GetProgramsBasedOnLevel(Level);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not get programs based on level. \n\nDetails:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
             dataView = dataTable.DefaultView;
 
-            cbProgram.DataSource= dataView;
+            cbProgram.DataSource = dataView;
             cbProgram.DisplayMember = "Name";
             //cbProgram.ValueMember = "ProgramID";
-           
+        
             if (cbProgram.SelectedIndex == -1)
             {
                 cbProgram.SelectedIndex = 0;
+
             }
+        
         }
+        
         private void frmAddStudent_Load(object sender, EventArgs e)
         {
 

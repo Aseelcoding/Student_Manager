@@ -27,7 +27,7 @@ namespace Student_Manager.Staff
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Could not retrieve Staff log data.\n\nDetails:" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
 
             DataView dvStafflog = dtStaffLog.DefaultView;

@@ -58,14 +58,10 @@ namespace Student_Manager.Programs
         private void AddNewProgram(clsCurrentProgram NewProgram) 
         {
          
-            try
-            {
+            
               Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewProgram(NewProgram.ProgramName, NewProgram.Level);
-            }
-            catch 
-            {
-                throw;
-            }
+            
+           
           
         }
        
@@ -85,7 +81,7 @@ namespace Student_Manager.Programs
 
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Could not add new program. \n\nDetails:" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 } 
                
             }
