@@ -82,6 +82,8 @@ namespace Student_Manager_DataAsccess
             {
                 throw new Exception("Failed to add log", ex);
             }
+
+            finally { connection.Close(); }
             return IsAdded;
         }
         //Staff's DataAccess Functions:
