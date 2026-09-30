@@ -165,9 +165,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Student_Manager_ Business Logic Layer\Student_Manager_ Business Logic Layer.csproj">
+    <ProjectReference Include="Student_Manager_ Business Logic Layer\Student_Manager_ Business Logic_Layer.csproj">
       <Project>{b1bcb267-0c42-4505-bf0a-0164a61a25de}</Project>
-      <Name>Student_Manager_ Business Logic Layer</Name>
+      <Name>Student_Manager_ Business Logic_Layer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

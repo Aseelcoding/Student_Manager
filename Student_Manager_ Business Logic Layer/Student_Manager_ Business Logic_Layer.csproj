@@ -48,9 +48,9 @@
     <Compile Include="Student Data\clsCurrentStudent.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Student_Manager_DataAsccess\Student_Manager_DataAsccess.csproj">
+    <ProjectReference Include="..\Student_Manager_DataAsccess\Student_Manager_DataAccess.csproj">
       <Project>{7dba2375-cdb9-4771-9a21-f5364747f4ef}</Project>
-      <Name>Student_Manager_DataAsccess</Name>
+      <Name>Student_Manager_DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
