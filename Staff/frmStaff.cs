@@ -29,7 +29,7 @@ namespace Student_Manager.Staff
                 dtStaff = Student_Manager__Business_Logic_Layer.BusinessLogic.GetAllStaff();
             }
 
-            catch (Exception ex)  { MessageBox.Show(ex.Message); }
+            catch (Exception ex)  { MessageBox.Show("Could not retrieve Staff data.\n\nDetails:" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error); }
 
             if (dtStaff != null)
             {
@@ -89,11 +89,10 @@ namespace Student_Manager.Staff
         {
             bool IsDeleted = false;
 
-            try
-            {
+          
                 IsDeleted=Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStaffByID(StaffID);
-            }
-            catch { throw; }
+            
+            
            return IsDeleted;
         }
         //this function will check if the user is trying to delete with login user or deleteing the last user:
@@ -134,7 +133,7 @@ namespace Student_Manager.Staff
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Could not delete this staff.\n\nDetails:" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
 
                 }
                 

@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add Student\frmAddStduent.cs">
+    <Compile Include="Student\Add Student\frmAddStduent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Add Student\frmAddStduent.Designer.cs">
+    <Compile Include="Student\Add Student\frmAddStduent.Designer.cs">
       <DependentUpon>frmAddStduent.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmLogin.cs">
@@ -105,14 +105,13 @@
     <Compile Include="Staff\frmStaffLog.Designer.cs">
       <DependentUpon>frmStaffLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student Data\clsCurrentStudent.cs" />
-    <Compile Include="Update Student\frmUpdateStudent.cs">
+    <Compile Include="Student\Update Student\frmUpdateStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Update Student\frmUpdateStudent.Designer.cs">
+    <Compile Include="Student\Update Student\frmUpdateStudent.Designer.cs">
       <DependentUpon>frmUpdateStudent.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Add Student\frmAddStduent.resx">
+    <EmbeddedResource Include="Student\Add Student\frmAddStduent.resx">
       <DependentUpon>frmAddStduent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
@@ -149,7 +148,7 @@
     <EmbeddedResource Include="Staff\frmStaffLog.resx">
       <DependentUpon>frmStaffLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Update Student\frmUpdateStudent.resx">
+    <EmbeddedResource Include="Student\Update Student\frmUpdateStudent.resx">
       <DependentUpon>frmUpdateStudent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
