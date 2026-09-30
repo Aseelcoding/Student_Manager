@@ -57,6 +57,62 @@ namespace Student_Manager.Staff
             frmMainScreen.Show();
         }
 
-        
+        //this function will filter the table:
+        private void FilterResult(string Filter)
+        {
+            dgvStaffLog.Rows.Clear();
+
+            DataView dtvStaffLog = new DataView();
+            dtvStaffLog = dtStaffLog.DefaultView;
+
+
+            if (cbSearch.SelectedIndex == 0)
+            {
+                int ID;
+
+                int.TryParse(Filter, out ID);
+
+                dtvStaffLog.RowFilter = $"StaffID={ID}";
+
+            }
+            if (cbSearch.SelectedIndex == 1)
+            {
+                int ID;
+
+                int.TryParse(Filter, out ID);
+
+                dtvStaffLog.RowFilter = $"StudentID={ID}";
+
+            }
+         
+            else if (cbSearch.SelectedIndex == 2)
+            {
+                dtvStaffLog.RowFilter = $"Operation Like '{Filter}%'";
+            }
+
+            if (Filter == string.Empty)
+            {
+                dtvStaffLog.RowFilter = string.Empty;
+            }
+
+            foreach (DataRowView rowView in dtvStaffLog)
+            {
+                DataRow row = rowView.Row;
+
+                dgvStaffLog.Rows.Add(
+
+                     row["StaffID"],
+                    row["StudentID"],
+                    row["Operation"],
+                    row["Time"]
+                );
+            }
+        }
+        private void txtBarSearch_TextChanged(object sender, EventArgs e)
+        {
+            string Filter = txtBarSearch.Text;
+            FilterResult(Filter);
+
+        }
     }
 }

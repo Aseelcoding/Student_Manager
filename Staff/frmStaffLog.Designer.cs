@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.cbSearch = new System.Windows.Forms.ComboBox();
             this.labSearchtxt = new System.Windows.Forms.Label();
@@ -94,6 +94,7 @@
             this.txtBarSearch.Size = new System.Drawing.Size(341, 32);
             this.txtBarSearch.TabIndex = 6;
             this.txtBarSearch.WordWrap = false;
+            this.txtBarSearch.TextChanged += new System.EventHandler(this.txtBarSearch_TextChanged);
             // 
             // btnBack
             // 
@@ -136,9 +137,9 @@
             // 
             // LogID
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.NullValue = null;
-            this.LogID.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.NullValue = null;
+            this.LogID.DefaultCellStyle = dataGridViewCellStyle1;
             this.LogID.HeaderText = "Log ID";
             this.LogID.MinimumWidth = 6;
             this.LogID.Name = "LogID";
