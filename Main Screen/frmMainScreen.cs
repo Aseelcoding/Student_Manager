@@ -54,7 +54,14 @@ namespace Student_Manager.Main_Screen
             dtgStudents.Rows.Clear();
             dtgStudents.AutoGenerateColumns = false;
 
-            dtStudents = Student_Manager__Business_Logic_Layer.BusinessLogic.GetAllStudents();
+            try
+            {
+                dtStudents = Student_Manager__Business_Logic_Layer.BusinessLogic.GetAllStudents();
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Could not retrieve student's data.\n\nDetails:"+ ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             DataView dtView = dtStudents.DefaultView;
 
             foreach (DataRowView rowView in dtView) 
@@ -232,24 +239,15 @@ namespace Student_Manager.Main_Screen
         //this function will delete the selected Student
         private bool DeleteStudent() 
         {
-            bool IsDeleted=false;
+           
             clsCurrentStudent student = new clsCurrentStudent();
             GetSelectedRow(ref student);
 
-            try
-            {
-                IsDeleted = Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStudentID(student.StudentID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            if (IsDeleted)
-            {
-
-            }
-
-            return IsDeleted;
+                        
+                return Student_Manager__Business_Logic_Layer.BusinessLogic.DeleteStudentID(student.StudentID);
+            
+           
+            
         }
         private void tsbmDelete_Click(object sender, EventArgs e)
         {
@@ -277,7 +275,7 @@ namespace Student_Manager.Main_Screen
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Could not delete student.\n\nDetails:" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

@@ -22,37 +22,21 @@ namespace Student_Manager__Business_Logic_Layer
         //Staff's Logs Business Logic Functions:
         static public DataTable GetAllStaffLogs()
         {
-            try
-            {
-                return Student_Manager_DataAsccess.DataAccess.GetAllStaffLogs();
-            }
-
-            catch  {
-
-                throw;
-            }
+              return Student_Manager_DataAsccess.DataAccess.GetAllStaffLogs();
+            
         }
-        static private void CheckLogData(int StaffID, int StudentID, string Operation) 
+        static private void CheckLogData(int StaffID, int StudentID, string Operation)
         {
-            try
-            {
-                IsIDValid(StaffID, "Staff");
 
-            }
-            catch
-            {
-                throw;
-            }
+            IsIDValid(StaffID, "Staff");
 
-            try
-            {
-                IsIDValid(StudentID, "Student");
 
-            }
-            catch
-            {
-                throw;
-            }
+
+
+
+            IsIDValid(StudentID, "Student");
+
+        
 
             if (string.IsNullOrEmpty(Operation)||(Operation!="Add"&&Operation!="Delete"&&Operation!="Update"))
             {
@@ -64,15 +48,11 @@ namespace Student_Manager__Business_Logic_Layer
         static public bool AddLog(int StaffID, int StudentID, string Operation, DateTime Time)
         {
             bool IsAdded = false;
-            try
-            {
+            
                 CheckLogData( StaffID,  StudentID,  Operation);
                 IsAdded = Student_Manager_DataAsccess.DataAccess.AddLog(StaffID, StudentID, Operation, Time);
-            }
-            catch
-            {
-                throw;
-            }
+            
+            
 
             return IsAdded;
         }
@@ -111,58 +91,42 @@ namespace Student_Manager__Business_Logic_Layer
         {
             bool IsStaffExist = false;
 
-            try
-            {
+            
                 IsStaffExist = Student_Manager_DataAsccess.DataAccess.IsStaffExist(ref StaffID, ref Name, UserName, Password);
-            }
-            catch
-            {
-                throw;
-            }
+            
+          
             return IsStaffExist;
         }
         static public DataTable GetAllStaff() 
         {
             DataTable dtStaff = new DataTable();
-            try
-            {
+           
                 dtStaff = Student_Manager_DataAsccess.DataAccess.GetAllStaff();
-            }
-            catch
-            {
-                throw;
-            }
+            
+           
             return dtStaff;
         }
         static public bool AddNewStaff(string StaffName, string Username, string Password)
         {
             bool IsAdded = false;
            
-            try
-            {
+           
                 IsStaffinfoValid(StaffName, Username, Password);
                 IsAdded = Student_Manager_DataAsccess.DataAccess.AddNewStaff(StaffName, Username, Password);
-            }
-            catch
-            {
-                throw;
-            }
+            
+          
             return IsAdded;
         }
         //here we will add UpdateStaff function:
         static public bool DeleteStaffByID(int StaffID)
         {
             bool IsDeleted = false;
-           
-            try
-            {
+
+            
                 IsIDValid(StaffID, "Staff");
                 IsDeleted = Student_Manager_DataAsccess.DataAccess.DeleteStaffByID(StaffID);
-            }
-            catch
-            {
-                throw;
-            }
+            
+           
             return IsDeleted;
         }
         //Student's Business Logic Functions:
@@ -275,8 +239,7 @@ namespace Student_Manager__Business_Logic_Layer
             bool IsAdded = false;
            
 
-            try
-            {
+           
                 IsStudentInfoValid(Name, Email, Phone, Address, ImagePath, ProgramName, Level, DateOfBirth);
                 IsAdded = Student_Manager_DataAsccess.DataAccess.AddNewStudent(
                  ref StudentID,
@@ -287,11 +250,8 @@ namespace Student_Manager__Business_Logic_Layer
                 {
                     AddLog(clsCurrentStaff.StaffID, StudentID, "Add", DateTime.Now);
                 }
-            }
-            catch
-            {
-                throw;
-            }
+            
+           
             return IsAdded;
         }
         static public bool UpdateStudent( int StudentID, string Name, string Email, string Phone
@@ -301,8 +261,7 @@ namespace Student_Manager__Business_Logic_Layer
            
 
 
-            try
-            {
+           
                 IsIDValid(StudentID, "Student");
                 IsStudentInfoValid(Name, Email, Phone, Address, ImagePath, ProgramName, Level, DateOfBirth);
                 IsUpdated = Student_Manager_DataAsccess.DataAccess.UpdateStudentByID(
@@ -314,25 +273,19 @@ namespace Student_Manager__Business_Logic_Layer
                 {
                     AddLog(clsCurrentStaff.StaffID, StudentID, "Update", DateTime.Now);
                 }
-            }
-            catch
-            {
-                throw;
-            }
+            
+          
 
             return IsUpdated;
         }
         static public DataTable GetAllStudents() 
         {
             DataTable dtStudents = new DataTable();
-            try
-            {
+            
                  dtStudents = Student_Manager_DataAsccess.DataAccess.GetAllStudents();
-            }
-            catch
-            {
-                throw;
-            }
+            
+            
+           
             return dtStudents;
         }
         static public bool GetStudentByID(int StudentID, ref string Name, ref string Level, ref string ProgramName, ref DateTime DateOfBirth, ref string Phone, ref string Email, ref string Address, ref string ImagePath)
@@ -340,18 +293,13 @@ namespace Student_Manager__Business_Logic_Layer
             bool IsExist = false;
          
 
-            try
-            {
-                IsIDValid(StudentID, "Student");
+              IsIDValid(StudentID, "Student");
                 IsExist = Student_Manager_DataAsccess.DataAccess.GetStudentByID
                  (StudentID, ref Name, ref Level, ref ProgramName,
                  ref DateOfBirth, ref Phone, ref Email,
                  ref Address, ref ImagePath);
-            }
-            catch
-            {
-                throw;
-            }
+            
+           
             return IsExist;
         }
         static public bool DeleteStudentID(int StudentID)
@@ -359,8 +307,7 @@ namespace Student_Manager__Business_Logic_Layer
             bool IsDeleted = false;
 
            
-            try
-            {
+           
                 IsIDValid(StudentID, "Student");
                 IsDeleted = Student_Manager_DataAsccess.DataAccess.DeleteStudentByID(StudentID);
 
@@ -368,11 +315,8 @@ namespace Student_Manager__Business_Logic_Layer
                 {
                     AddLog(clsCurrentStaff.StaffID, StudentID, "Delete", DateTime.Now);
                 }
-            }
-            catch
-            {
-                throw;
-            }
+            
+           
             return IsDeleted;
         }
         //Program's DataAccess Functions:
@@ -427,14 +371,10 @@ namespace Student_Manager__Business_Logic_Layer
             DataTable dtPrograms = new DataTable();
             
 
-            try
-            {
+           
                 dtPrograms = Student_Manager_DataAsccess.DataAccess.GetProgramsTableWithNumOfStudents();
-            }
-            catch
-            {
-                throw;
-            }
+            
+          
 
             return dtPrograms;
         }
@@ -442,47 +382,35 @@ namespace Student_Manager__Business_Logic_Layer
         {
             bool IsAdded = false;
 
-            try
-            {
+           
                 IsProgramInfoValid(ProgramName, Level);
 
 
                 IsAdded= Student_Manager_DataAsccess.DataAccess.AddNewProgram(ProgramName, Level);
-            }
-            catch
-            {
-                throw;
-            }
+            
+          
             return IsAdded;
         }
         static public bool UpdateProgramByID(int ProgramID,string ProgramName,string Level)
         {
             bool IsUpdated = false;
            
-            try {
+           
                 IsIDValid(ProgramID, "Program");
 
                 IsProgramInfoValid(ProgramName, Level);
                 IsUpdated =Student_Manager_DataAsccess.DataAccess.UpdateProgramByID(ProgramID, ProgramName, Level);
-            }
-            catch
-            {
-                throw;
-            }
+          
             return IsUpdated;
         }
         static public bool DeleteProgramByID(int ProgramID)
         {
             bool IsDeleted = false;
-            try
-            {
+           
                 IsIDValid(ProgramID, "Program");
                 IsDeleted= Student_Manager_DataAsccess.DataAccess.DeleteProgramByID(ProgramID);
-            }
-            catch
-            {
-                throw;
-            }
+            
+         
             return IsDeleted;
         }
 
