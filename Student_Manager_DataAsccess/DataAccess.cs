@@ -365,8 +365,12 @@ namespace Student_Manager_DataAsccess
         }
         static public bool UpdateStudentByID(int StudentID,  string Name,  string Level,  string ProgramName,  DateTime DateOfBirth,  string Phone,  string Email,  string Address,  string ImagePath)
         {
-            int ContactID= GetContactID(Phone, Email);
-            int ProgramID= GetProgramID(ProgramName, Level);
+            int ContactID;
+            try { ContactID = GetContactID(Phone, Email); }
+            catch { throw; }
+            int ProgramID;
+            try {  ProgramID = GetProgramID(ProgramName, Level); }
+            catch { throw; }
 
             bool isUpdated = false;
 

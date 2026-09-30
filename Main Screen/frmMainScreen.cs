@@ -249,6 +249,7 @@ namespace Student_Manager.Main_Screen
         }
         private void tsbmDelete_Click(object sender, EventArgs e)
         {
+            bool IsDeleted = false;
             if (dtgStudents.SelectedRows.Count <= 0)
             {
 
@@ -261,13 +262,18 @@ namespace Student_Manager.Main_Screen
             if(MessageBox.Show("Are you sure want to delete this student ?", "Warning", MessageBoxButtons.OKCancel)==DialogResult.OK)
             {
 
-                if (DeleteStudent()) 
+                try
                 {
-                    MessageBox.Show("Delete the student done successfully", "success", MessageBoxButtons.OK);
+                    IsDeleted = DeleteStudent();
+  
+                    if (IsDeleted)
+                    {
+                        MessageBox.Show("Delete the student done successfully", "success", MessageBoxButtons.OK);
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Faild to delete the student try again later", "Warning", MessageBoxButtons.OK);
+                    MessageBox.Show(ex.Message);
                 }
             }
 

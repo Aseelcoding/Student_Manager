@@ -75,7 +75,7 @@ namespace Student_Manager.Staff
 
         private void GetSelectedRow(ref clsStaff Staff) 
         {
-            if (dgvStaff.Rows.Count > 0) 
+            if (dgvStaff.SelectedRows.Count > 0) 
             {
                 string StID = dgvStaff.SelectedRows[0].Cells["StaffID"].Value.ToString();
                 int.TryParse(StID, out Staff.StaffID);
@@ -127,6 +127,8 @@ namespace Student_Manager.Staff
                 try
                 {
                     IsDeleted=DeleteStaff(StaffToDelete.StaffID);
+
+                    if(IsDeleted)
                     MessageBox.Show("Staff  with the ID :" + StaffToDelete.StaffID + " Deleted successfully", "Success", MessageBoxButtons.OK);
 
                 }
