@@ -119,6 +119,7 @@
             this.btnStaffLog.Text = "Staff Log";
             this.btnStaffLog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStaffLog.UseVisualStyleBackColor = false;
+            this.btnStaffLog.Click += new System.EventHandler(this.btnStaffLog_Click);
             // 
             // btnSettings
             // 

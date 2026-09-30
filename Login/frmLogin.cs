@@ -21,7 +21,6 @@ namespace Student_Manager
          
         }
 
-
         //Function to save Staff's info
         private void SaveStaffInfo(int StaffID,string Name,string Username,string Password) 
         {
@@ -34,30 +33,44 @@ namespace Student_Manager
         //Function to perform the login process:
         private void Login() 
         {
+            bool IsExist = false;
             int StaffID = -1;
             string Name = "";
             string UserName = txtUserName.Text.ToString();
             string Password = txtPassword.Text.ToString();
-            if (UserName == "" || Password == "")
+            if (string.IsNullOrWhiteSpace(UserName)|| string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("Please enter the user name and the password", "try again", MessageBoxButtons.OK);
 
                 return;
             }
-            if (Student_Manager__Business_Logic_Layer.BusinessLogic.IsStaffExist(ref StaffID,ref Name, UserName, Password))
-            {
-                MessageBox.Show("Access is Approved by: " + Name, "Success", MessageBoxButtons.OK);
-                SaveStaffInfo(StaffID,Name,UserName,Password);
-                //here it will move ot the next form and if the user close the program will be closed
-                this.Hide();
-                frmMainScreen frmMainScreen = new frmMainScreen();
-                frmMainScreen.Show();
 
-            }
-            else
+            try
             {
-                MessageBox.Show("Access is not Approved", "Failed", MessageBoxButtons.OK);
-                return;
+                IsExist = Student_Manager__Business_Logic_Layer.BusinessLogic.IsStaffExist(ref StaffID, ref Name, UserName, Password);
+
+
+
+                if (IsExist)
+                {
+                    MessageBox.Show("Access is Approved by: " + Name, "Success", MessageBoxButtons.OK);
+
+                    SaveStaffInfo(StaffID, Name, UserName, Password);
+                    //here it will move ot the next form and if the user close the program will be closed
+                    this.Hide();
+                    frmMainScreen frmMainScreen = new frmMainScreen();
+                    frmMainScreen.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Access is not Approved", "Failed", MessageBoxButtons.OK);
+                 
+                }
+            }
+            
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
            
         }
@@ -72,5 +85,7 @@ namespace Student_Manager
 
 
         }
+
+       
     }
 }

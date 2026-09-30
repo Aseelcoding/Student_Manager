@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Student_Manager.Staff_Data
 {
-    internal class clsStaff
+    public class clsStaff
     {
         public int StaffID;
          public string Name;

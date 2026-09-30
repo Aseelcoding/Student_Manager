@@ -244,6 +244,10 @@ namespace Student_Manager.Main_Screen
             {
                 MessageBox.Show(ex.Message);
             }
+            if (IsDeleted)
+            {
+
+            }
 
             return IsDeleted;
         }
@@ -287,6 +291,15 @@ namespace Student_Manager.Main_Screen
             frmStaff frm= new frmStaff();
             frm.Show();
             
+
+        }
+
+        private void btnStaffLog_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmStaffLog frm= new frmStaffLog();
+
+            frm.Show();
 
         }
     }

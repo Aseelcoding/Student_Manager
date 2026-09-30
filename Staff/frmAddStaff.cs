@@ -49,7 +49,7 @@ namespace Student_Manager.Staff
             return IsValid;
         }
         //this function will save the staff info into object:
-        private void SaveStaffIntoObject(ref clsStaff NewStaff) 
+        private void SaveStaffIntoObject(ref Student_Manager.Staff_Data.clsStaff NewStaff) 
         {
             NewStaff.Name = txtName.Text;
             NewStaff.Username= txtUserName.Text;

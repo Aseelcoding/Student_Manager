@@ -60,7 +60,7 @@ namespace Student_Manager.Programs
          
             try
             {
-              Student_Manager__Business_Logic_Layer.BusinessLogic.SaveNewProgram(NewProgram.ProgramName, NewProgram.Level);
+              Student_Manager__Business_Logic_Layer.BusinessLogic.AddNewProgram(NewProgram.ProgramName, NewProgram.Level);
             }
             catch 
             {

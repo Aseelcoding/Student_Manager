@@ -13,6 +13,77 @@ namespace Student_Manager_DataAsccess
     public class DataAccess
     {
 
+        //Staff's Logs Dataaccess Functions:
+        static public DataTable GetAllStaffLogs() 
+        {
+            DataTable dtStaffLogs=new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"SELECT [LogID]
+                     ,[StaffID]
+                     ,[StudentID]
+                     ,[Operation]
+                     ,[Time]
+                FROM [dbo].[Staff_Log];";
+
+            SqlCommand cmd=new SqlCommand (query, connection);
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                dtStaffLogs.Load(reader);
+
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception("Failed to Get staff's logs",ex);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dtStaffLogs;
+        }
+        static public bool AddLog(int StaffID,int StudentID,string Operation,DateTime Time)
+        {
+            bool IsAdded = false;
+
+            SqlConnection connection =new SqlConnection(clsDataAccessSeetings.connectionString);
+
+            string query = @"INSERT INTO [dbo].[Staff_Log]
+           ([StaffID]
+           ,[StudentID]
+           ,[Operation]
+           ,[Time])
+     VALUES
+          (@StaffID,
+           @StudentID,
+           @Operation,
+           @Time
+          );";
+
+            SqlCommand cmd=new SqlCommand (query, connection);
+            cmd.Parameters.AddWithValue("@StaffID", StaffID);
+            cmd.Parameters.AddWithValue("@StudentID", StudentID);
+            cmd.Parameters.AddWithValue("@Operation", Operation);
+            cmd.Parameters.AddWithValue("@Time", Time);
+
+            try
+            {
+                connection.Open();
+                int AffectedRows = cmd.ExecuteNonQuery();
+                if (AffectedRows > 0)
+                    IsAdded = true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to add log", ex);
+            }
+            return IsAdded;
+        }
         //Staff's DataAccess Functions:
         static public bool IsStaffExist(ref int StaffID,ref string Name,string  UserName,string Password)
         {

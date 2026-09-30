@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Staff Data\clsCurrentStaff.cs" />
+    <Compile Include="Staff Data\clsStaff.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Student_Manager_DataAsccess\Student_Manager_DataAsccess.csproj">
